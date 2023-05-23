@@ -52,16 +52,17 @@ export default function Home () {
   }, [])
 
   console.log(points)
-  console.log(materials.map(material => console.log(Object.keys(material.layers))))
+  console.log(materials)
+  // console.log(materials.map(material => console.log(Object.keys(material.layers))))
 
 
   return (
    
       <div className='flex flex-col items-center justify-center w-full min-h-screen py-2'>
         <h1>ESTUDIO CACTUS VISUALIZER TEST</h1>
-        <div className='flex flex-row h-2/3 w-full px-28'>
+        <div className='flex flex-row h-2/3 min-w-full px-28'>
          <ImageContainer points={points} materials={materials} />
-         <AsideContainer materials={materials} points={points} />
+         {/* <AsideContainer materials={materials} points={points} /> */}
         </div>
       </div>
     
