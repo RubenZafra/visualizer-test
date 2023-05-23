@@ -59,10 +59,10 @@ export default function Home () {
   return (
    
       <div className='flex flex-col items-center justify-center w-full min-h-screen py-2'>
-        <h1>ESTUDIO CACTUS VISUALIZER TEST</h1>
+        <h1 className='text-3xl font-bold mb-4'>ESTUDIO CACTUS VISUALIZER TEST</h1>
         <div className='flex flex-row h-2/3 min-w-full px-28'>
          <ImageContainer points={points} materials={materials} />
-         {/* <AsideContainer materials={materials} points={points} /> */}
+         <AsideContainer points={points} materials={materials} />
         </div>
       </div>
     

@@ -1,20 +1,24 @@
 import { MaterialCard } from "../common/MaterialCard"
 
-export const AsideContainer = ({materials}) => {
+export const AsideContainer = ({materials, name}) => {
 
   return (
 
-    <aside className="ml-28">
+    
+
+    <aside className="pl-28">
+        {name}
         {
             materials &&
-            materials.map(material => {
+
+            (materials.map(material => {
                 return (
-                    <div key={material.id} className='flex flex-col items-center'>
-                        <MaterialCard name={material.name} image={material.materialPreview}/>
+                    <div key={material.id} className='flex flex-col items-center hover:scale-105'>
+                        <MaterialCard material={material}/>
                     </div>
                 )
             
-            })
+            }))
         }
     </aside>
   )
