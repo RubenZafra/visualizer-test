@@ -1,14 +1,10 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { Point } from "../common/Point"
 import { AsideContainer } from "./AsideContainer"
 import { LayersContext } from "../../context/LayersContext"
 
 export const ImageContainer = ({points, materials}) => {
 
-    // const [filteredMaterials, setFilteredMaterials] = useState([])
-    // const [isMaterialMenuOpen, setIsMaterialMenuOpen] = useState(false)
-    // const [isLoading, setIsLoading] = useState(false)
-    // const [furnitureName, setFurnitureName] = useState('')
 
     const [materialsArray, setMaterialsArray] = useState([])
     const [materialsName, setMaterialsName] = useState('')
@@ -18,27 +14,10 @@ export const ImageContainer = ({points, materials}) => {
     const {isMaterialMenuOpen, isLoading, furnitureName, filteredMaterials, materialLayer} = layersState
 
     const handleClick = (point) => {
-        // setIsLoading()
-        // if (point.name == furnitureName && isMaterialMenuOpen) {
-        //     setIsMaterialMenuOpen(false)
-        //     setFurnitureName('')
-        // } else {
-        //     setIsMaterialMenuOpen(true)
-        //     setFurnitureName(point.name)
-        // }
-        // setMaterialsArray(materials.filter(material => Object.keys(material.layers).toString() === point.id))
-        // setMaterialsName(point.name)
+
         setFilteredMaterials(materials.filter(material => Object.keys(material.layers).toString() === point.id), point.name)
-        // setIsLoading()
-        // setFurnitureName(point.name)
+
     }
-
-    // useEffect(() => {
-    //     setFilteredMaterials(materialsArray, materialsName)
-    // }, [materialsArray, materialsName])
-    
-    console.log(layersState)
-
 
   return (
     <>
