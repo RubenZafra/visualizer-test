@@ -6,7 +6,7 @@ export const AsideContainer = ({materials, name}) => {
 
     <aside className="w-full flex flex-col items-center">
         <h2 className="text-lg font-bold mb-8">{name}</h2> 
-        <div className="flex flex-row h-1/3 gap-4 w-full">
+        <div className="flex flex-row h-24 sm:h-32 md:h-36 gap-4 w-full">
             {
                 materials &&
 

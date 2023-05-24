@@ -15,7 +15,7 @@ export const MaterialCard = ({material}) => {
         <img 
             src={materialPreview} 
             alt={name} 
-            className="w-full h-1/2 border-2 border-slate-500 rounded-lg shadow-lg" 
+            className="w-full h-full block border-2 border-slate-500 rounded-lg shadow-lg object-cover" 
             onClick={() => handleClick(Object.values(material.layers).toString())}
         />
         <div className="flex items-center justify-center">
