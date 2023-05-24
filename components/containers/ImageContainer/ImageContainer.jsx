@@ -6,19 +6,21 @@ import { ColorRing } from "react-loader-spinner"
 
 export const ImageContainer = ({points, materials}) => {
 
-    const {setFilteredMaterials, layersState, setIsLoading, setIsMaterialMenuOpen, setFurnitureName} = useContext(LayersContext)
-    const {isMaterialMenuOpen, isLoading, furnitureName, filteredMaterials, materialLayer} = layersState
+    const {setFilteredMaterials, layersState, setIsLoading, setIsMaterialMenuOpen, setFurnitureName, setInvisiblePoints} = useContext(LayersContext)
+    const {isMaterialMenuOpen, isLoading, furnitureName, filteredMaterials, materialLayer, visiblePoints} = layersState
 
     const handleClick = async (point) => {
 
          setIsLoading(true)
 
-        if(furnitureName === point.name) {
-            await setIsMaterialMenuOpen(!isMaterialMenuOpen)
-             setFurnitureName('')
-            setIsLoading(false)
+         setInvisiblePoints(false)
+
+        // if(furnitureName === point.name) {
+        //     await setIsMaterialMenuOpen(!isMaterialMenuOpen)
+        //     setFurnitureName('')
+        //     setIsLoading(false)
             
-        } else {
+        // } else {
 
             await setFilteredMaterials(materials.filter(material => Object.keys(material.layers).toString() === point.id), point.name)
                 
@@ -26,15 +28,17 @@ export const ImageContainer = ({points, materials}) => {
                 setIsLoading(false)
             }, 500);
          
-        }
+        // }
+    }
+
+    const setVisiblePoints = ( ) => {
+        setInvisiblePoints(true)
     }
 
   return (
-    <div className='flex flex-col h-full items-center justify-center p-4'>
-        <div 
-        className='z-10 relative h-3/4'
-        >
-            <img className="min-w-screen h-3/4 -z-30 top-0 left-0 relative rounded-md" src="https://firebasestorage.googleapis.com/v0/b/visualizer-new-devs-test.appspot.com/o/base.jpeg?alt=media&token=358ccdea-3cf9-4751-ae48-4631e4700554" alt="base-image" />
+    <div className='flex flex-col h-3/4 p-4 lg:flex-row'>
+        <div className='z-10 relative'>
+            <img className="min-w-screen -z-30 top-0 left-0 relative rounded-md" onClick={() => setVisiblePoints()} src="https://firebasestorage.googleapis.com/v0/b/visualizer-new-devs-test.appspot.com/o/base.jpeg?alt=media&token=358ccdea-3cf9-4751-ae48-4631e4700554" alt="base-image" />
             {    
             <>
                 {isLoading && 
@@ -42,18 +46,19 @@ export const ImageContainer = ({points, materials}) => {
                     <ColorRing />
                 </div>
                 }
-                {materialLayer.frente && <img className="z-10 top-0 absolute rounded-md" src={materialLayer.frente} alt="base-image" />}
-                {materialLayer.entrepaños && <img className="z-10 top-0 absolute rounded-md" src={materialLayer.entrepaños} alt="base-image" />}
-                {materialLayer.pavimento && <img className="z-10 top-0 absolute rounded-md" src={materialLayer.pavimento} alt="base-image" />}
-                {materialLayer.encimera && <img className="z-10 top-0 absolute rounded-md" src={materialLayer.encimera} alt="base-image" />}
+                {materialLayer.frente && <img className="z-10 top-0 absolute rounded-md" onClick={() => setVisiblePoints()} src={materialLayer.frente} alt="base-image" />}
+                {materialLayer.entrepaños && <img className="z-10 top-0 absolute rounded-md" onClick={() => setVisiblePoints()} src={materialLayer.entrepaños} alt="base-image" />}
+                {materialLayer.pavimento && <img className="z-10 top-0 absolute rounded-md" onClick={() => setVisiblePoints()} src={materialLayer.pavimento} alt="base-image" />}
+                {materialLayer.encimera && <img className="z-10 top-0 absolute rounded-md" onClick={() => setVisiblePoints()} src={materialLayer.encimera} alt="base-image" />}
             </>     
             }        
-            { points &&
+            { (points && visiblePoints) &&
                 points.map((point, index) => {
                     return (
                         <div 
                             key={index}
-                            onClick={() => handleClick(point)}                        
+                            onClick={() => handleClick(point)}
+                            className="z-50"                        
                         >
                             <Point 
                                 style={{top: `${point.coordY}%`, left: `${point.coordX}%`}} 
@@ -63,13 +68,12 @@ export const ImageContainer = ({points, materials}) => {
                 })
             }
         </div>
-        <div className="w-full pt-4 flex flex-row">
+        <div className="pt-4 bg-white">
             {
                 isMaterialMenuOpen &&
                     <AsideContainer materials={filteredMaterials} name={furnitureName}/>
             }
         </div>
-        
     </div>
     )
 }

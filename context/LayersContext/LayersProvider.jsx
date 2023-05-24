@@ -15,6 +15,16 @@ const LayersProvider = ({children}) => {
                 points
             }})
         }, [])
+
+    const setInvisiblePoints = useCallback(boolean => {
+
+        dispatch({
+            type: TYPES.SET_INVISIBLE_POINTS,
+            payload: {
+                visiblePoints: boolean
+            }})
+        
+    }, [])
     
     const setMaterials = useCallback(materials => {
         
@@ -83,8 +93,9 @@ const LayersProvider = ({children}) => {
         setIsLoading, 
         setIsMaterialMenuOpen,
         setFurnitureName,  
-        setMaterialLayer
-    }), [layersState, setPoints, setMaterials, setFilteredMaterials, setIsLoading, setIsMaterialMenuOpen, setMaterialLayer, setFurnitureName])
+        setMaterialLayer, 
+        setInvisiblePoints
+    }), [layersState, setPoints, setMaterials, setFilteredMaterials, setIsLoading, setIsMaterialMenuOpen, setMaterialLayer, setFurnitureName, setInvisiblePoints])
 
 
     return (

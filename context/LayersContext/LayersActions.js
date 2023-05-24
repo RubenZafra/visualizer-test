@@ -8,7 +8,8 @@ export const initialValue = {
     isMaterialMenuOpen: false,
     isLoading: false,
     furnitureName: '', 
-    materialLayer: { entrepaños: '', encimera: '', frente: '', pavimento: '' }
+    materialLayer: { entrepaños: '', encimera: '', frente: '', pavimento: '' },
+    visiblePoints: true,
 }
 
 export const reducer = (state, action) => {
@@ -19,6 +20,12 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 points: action.payload.points,
+            }
+        case TYPES.SET_INVISIBLE_POINTS:
+            return {
+                ...state, 
+                visiblePoints: action.payload.visiblePoints,
+                isMaterialMenuOpen: !action.payload.visiblePoints,
             }
         case TYPES.SET_MATERIALS:
             return {
