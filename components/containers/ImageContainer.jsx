@@ -1,13 +1,9 @@
 import { useContext, useState } from "react"
 import { Point } from "../common/Point"
 import { AsideContainer } from "./AsideContainer"
-import { LayersContext } from "../../context/LayersContext"
+import { LayersContext } from "../../context/LayersContext/LayersContext"
 
 export const ImageContainer = ({points, materials}) => {
-
-
-    const [materialsArray, setMaterialsArray] = useState([])
-    const [materialsName, setMaterialsName] = useState('')
 
     const {setFilteredMaterials, layersState, setIsLoading, setIsMaterialMenuOpen, setFurnitureName} = useContext(LayersContext)
 
@@ -20,7 +16,7 @@ export const ImageContainer = ({points, materials}) => {
     }
 
   return (
-    <>
+    <div className='flex flex-row min-h-full min-w-full px-28'>
         <div 
         className='h-full z-10 relative min-w-2/3'
         >
@@ -43,7 +39,7 @@ export const ImageContainer = ({points, materials}) => {
                 })
             }
         </div>
-        <div className="pt-4">
+        <div className="pt-4 h-full min-w-1/3">
             {
                 isMaterialMenuOpen &&
                     <AsideContainer materials={filteredMaterials} name={furnitureName}/>
@@ -51,6 +47,6 @@ export const ImageContainer = ({points, materials}) => {
             }
         </div>
         
-    </>
+    </div>
     )
 }

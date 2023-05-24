@@ -1,4 +1,4 @@
-import LayersProvider from '../context/LayersProvider'
+import LayersProvider from '../context/LayersContext/LayersProvider'
 import { MainContainer } from '../components/containers/MainContainer'
 
 
@@ -9,7 +9,5 @@ export default function Home () {
       <MainContainer>
       </MainContainer>
     </LayersProvider>
-   
-    
   )
 }

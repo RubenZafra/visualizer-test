@@ -5,11 +5,9 @@ import {
   collection, 
   getDocs
 } from 'firebase/firestore'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { ImageContainer } from '../containers/ImageContainer'
-import { AsideContainer } from '../containers/AsideContainer'
-import { LayersContext } from '../../context/LayersContext'
-
+import { LayersContext } from '../../context/LayersContext/LayersContext'
 
 // connect to DB
 initializeApp(config)
@@ -19,11 +17,10 @@ const db = getFirestore()
 const pointsRef = collection(db, 'points')
 const materialsRef = collection(db, 'materials')
 
-
 export const MainContainer = () => {
 
-
   const {setPoints, layersState, setMaterials} = useContext(LayersContext)
+  const {materials, points} = layersState
 
   useEffect(() => {
     ( async () => {
@@ -57,10 +54,7 @@ export const MainContainer = () => {
   return (
     <div className='flex flex-col items-center justify-center w-full min-h-screen py-2'>
         <h1 className='text-3xl font-bold mb-4'>ESTUDIO CACTUS VISUALIZER TEST</h1>
-        <div className='flex flex-row h-2/3 min-w-full px-28'>
-         <ImageContainer points={layersState.points} materials={layersState.materials} />
-         {/* <AsideContainer points={layersState.points} materials={layersState.materials} /> */}
-        </div>
+         <ImageContainer points={points} materials={materials} />
     </div>
   )
 }
