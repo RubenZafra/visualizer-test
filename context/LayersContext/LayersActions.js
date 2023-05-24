@@ -8,7 +8,7 @@ export const initialValue = {
     isMaterialMenuOpen: false,
     isLoading:  false,
     furnitureName: '', 
-    materialLayer: ''
+    materialLayer: { entrepaños: '', encimera: '', frente: '', pavimento: '' }
 }
 
 export const reducer = (state, action) => {
@@ -51,7 +51,7 @@ export const reducer = (state, action) => {
         case TYPES.SET_MATERIAL_LAYER:
             return {
                 ...state,
-                materialLayer: action.payload.materialLayer,
+                materialLayer: {...state.materialLayer,  [state.furnitureName.toLowerCase()]: action.payload.materialLayer},
             }
         default:
             return state

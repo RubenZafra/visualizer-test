@@ -40,8 +40,16 @@ const LayersProvider = ({children}) => {
     const setIsLoading = useCallback(() => {
         
         dispatch({
-            type: TYPES.SET_FILTERED_MATERIALS,
+            type: TYPES.SET_IS_LOADING,
             payload
+            })
+        }, [])
+
+    const setFurnitureName = useCallback((furnitureName) => {
+        
+        dispatch({
+            type: TYPES.SET_FURNITURE_NAME,
+            payload: furnitureName
             })
         }, [])
 
@@ -71,9 +79,10 @@ const LayersProvider = ({children}) => {
         setMaterials, 
         setFilteredMaterials, 
         setIsLoading, 
-        setIsMaterialMenuOpen,  
+        setIsMaterialMenuOpen,
+        setFurnitureName,  
         setMaterialLayer
-    }), [layersState, setPoints, setMaterials, setFilteredMaterials, setIsLoading, setIsMaterialMenuOpen, setMaterialLayer])
+    }), [layersState, setPoints, setMaterials, setFilteredMaterials, setIsLoading, setIsMaterialMenuOpen, setMaterialLayer, setFurnitureName])
 
 
     return (

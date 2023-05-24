@@ -11,14 +11,17 @@ export const MaterialCard = ({material}) => {
     }
   return (
 
-        <div 
-            className="bg-white rounded-md shadow-lg w-full h-1/3 mb-16"
+    <>
+        <img 
+            src={materialPreview} 
+            alt={name} 
+            className="w-full h-1/2 border-2 border-slate-500 rounded-lg shadow-lg" 
             onClick={() => handleClick(Object.values(material.layers).toString())}
-        >
-            <img src={materialPreview} alt="" className="rounded-lg w-full h-1/3" />
-            <div className="flex items-center justify-center">
-                <h2 className="mb-4 font-medium">{name}</h2>
-            </div>
-        </div>  
+        />
+        <div className="flex items-center justify-center">
+            <h2 className="mt-4 font-medium">{name}</h2>
+        </div>
+    </>
+       
   )
 }
