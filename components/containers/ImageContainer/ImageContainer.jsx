@@ -1,16 +1,13 @@
 import { useContext } from "react"
-import { Point } from "../common/Point"
-import { AsideContainer } from "./AsideContainer"
-import { LayersContext } from "../../context/LayersContext/LayersContext"
+import { Point } from "../../common/Point/Point"
+import { AsideContainer } from "../AsideContainer/AsideContainer"
+import { LayersContext } from "../../../context/LayersContext/LayersContext"
 import { ColorRing } from "react-loader-spinner"
 
 export const ImageContainer = ({points, materials}) => {
 
     const {setFilteredMaterials, layersState, setIsLoading, setIsMaterialMenuOpen, setFurnitureName} = useContext(LayersContext)
-
     const {isMaterialMenuOpen, isLoading, furnitureName, filteredMaterials, materialLayer} = layersState
-
-    console.log(isLoading)
 
     const handleClick = async (point) => {
 
@@ -30,10 +27,7 @@ export const ImageContainer = ({points, materials}) => {
             }, 500);
          
         }
-
     }
-
-    console.log(layersState)
 
   return (
     <div className='flex flex-col h-full items-center justify-center p-4'>

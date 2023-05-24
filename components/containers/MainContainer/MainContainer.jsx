@@ -1,4 +1,4 @@
-import { config } from '../../firebase/config'
+import { config } from '../../../firebase/config'
 import  { initializeApp } from 'firebase/app'
 import {
   getFirestore, 
@@ -6,8 +6,8 @@ import {
   getDocs
 } from 'firebase/firestore'
 import { useContext, useEffect } from 'react'
-import { ImageContainer } from '../containers/ImageContainer'
-import { LayersContext } from '../../context/LayersContext/LayersContext'
+import { ImageContainer } from '../ImageContainer/ImageContainer'
+import { LayersContext } from '../../../context/LayersContext/LayersContext'
 
 // connect to DB
 initializeApp(config)

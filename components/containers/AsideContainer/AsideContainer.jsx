@@ -1,4 +1,4 @@
-import { MaterialCard } from "../common/MaterialCard"
+import { MaterialCard } from "../../common/MaterialCard/MaterialCard"
 
 export const AsideContainer = ({materials, name}) => {
 
