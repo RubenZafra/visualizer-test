@@ -6,37 +6,27 @@ import { ColorRing } from "react-loader-spinner"
 
 export const ImageContainer = ({points, materials}) => {
 
-    const {setFilteredMaterials, layersState, setIsLoading, setIsMaterialMenuOpen, setFurnitureName, setInvisiblePoints} = useContext(LayersContext)
+    const {setFilteredMaterials, layersState, setIsLoading, setInvisiblePoints} = useContext(LayersContext)
     const {isMaterialMenuOpen, isLoading, furnitureName, filteredMaterials, materialLayer, visiblePoints} = layersState
 
     const handleClick = async (point) => {
 
-         setIsLoading(true)
+        setIsLoading(true)
+        setInvisiblePoints(false)
 
-         setInvisiblePoints(false)
-
-        // if(furnitureName === point.name) {
-        //     await setIsMaterialMenuOpen(!isMaterialMenuOpen)
-        //     setFurnitureName('')
-        //     setIsLoading(false)
+        await setFilteredMaterials(materials.filter(material => Object.keys(material.layers).toString() === point.id), point.name)
             
-        // } else {
-
-            await setFilteredMaterials(materials.filter(material => Object.keys(material.layers).toString() === point.id), point.name)
-                
-            setTimeout(() => {
-                setIsLoading(false)
-            }, 500);
-         
-        // }
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 500);
     }
 
-    const setVisiblePoints = ( ) => {
+    const setVisiblePoints = () => {
         setInvisiblePoints(true)
     }
 
   return (
-    <div className='flex flex-col h-3/4 p-4 lg:flex-row'>
+    <div className='flex flex-col h-3/4 p-4 lg:flex-row justify-between'>
         <div className='z-10 relative'>
             <img className="min-w-screen -z-30 top-0 left-0 relative rounded-md" onClick={() => setVisiblePoints()} src="https://firebasestorage.googleapis.com/v0/b/visualizer-new-devs-test.appspot.com/o/base.jpeg?alt=media&token=358ccdea-3cf9-4751-ae48-4631e4700554" alt="base-image" />
             {    
@@ -70,8 +60,10 @@ export const ImageContainer = ({points, materials}) => {
         </div>
         <div className="pt-4 bg-white">
             {
-                isMaterialMenuOpen &&
+                isMaterialMenuOpen ?
                     <AsideContainer materials={filteredMaterials} name={furnitureName}/>
+                    :
+                <div></div>
             }
         </div>
     </div>

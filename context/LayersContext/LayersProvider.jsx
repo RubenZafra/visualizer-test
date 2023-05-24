@@ -56,24 +56,6 @@ const LayersProvider = ({children}) => {
             }
             })
         }, [])
-
-    const setFurnitureName = useCallback((furnitureName) => {
-        
-        dispatch({
-            type: TYPES.SET_FURNITURE_NAME,
-            payload: furnitureName
-            })
-        }, [])
-
-    const setIsMaterialMenuOpen  = useCallback((boolean) => {
-        
-        dispatch({
-            type: TYPES.SET_FILTERED_MATERIALS,
-            payload: {
-                boolean
-            }})
-        }, [])
-    
     
     const setMaterialLayer  = useCallback((materialLayer, furnitureName) => {
         
@@ -91,11 +73,9 @@ const LayersProvider = ({children}) => {
         setMaterials, 
         setFilteredMaterials, 
         setIsLoading, 
-        setIsMaterialMenuOpen,
-        setFurnitureName,  
         setMaterialLayer, 
         setInvisiblePoints
-    }), [layersState, setPoints, setMaterials, setFilteredMaterials, setIsLoading, setIsMaterialMenuOpen, setMaterialLayer, setFurnitureName, setInvisiblePoints])
+    }), [layersState, setPoints, setMaterials, setFilteredMaterials, setIsLoading, setMaterialLayer, setInvisiblePoints])
 
 
     return (

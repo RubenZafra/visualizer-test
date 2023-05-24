@@ -53,7 +53,7 @@ export const MainContainer = () => {
 
   return (
     <div className='flex flex-col items-center justify-center w-full min-h-screen py-2'>
-        <h1 className='text-xl font-bold mb-4'>ESTUDIO CACTUS VISUALIZER TEST</h1>
+        <h1 className='text-xl font-bold mb-4 lg:text-3xl'>ESTUDIO CACTUS VISUALIZER TEST</h1>
         <ImageContainer points={points} materials={materials} />
     </div>
   )
