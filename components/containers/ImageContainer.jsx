@@ -1,7 +1,8 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { Point } from "../common/Point"
 import { AsideContainer } from "./AsideContainer"
 import { LayersContext } from "../../context/LayersContext/LayersContext"
+import { ColorRing } from "react-loader-spinner"
 
 export const ImageContainer = ({points, materials}) => {
 
@@ -9,13 +10,26 @@ export const ImageContainer = ({points, materials}) => {
 
     const {isMaterialMenuOpen, isLoading, furnitureName, filteredMaterials, materialLayer} = layersState
 
-    const handleClick = (point) => {
+    console.log(isLoading)
+
+    const handleClick = async (point) => {
+
+         setIsLoading(true)
+
         if(furnitureName === point.name) {
-            setIsMaterialMenuOpen(!isMaterialMenuOpen)
-            setFurnitureName('')
-            return
+            await setIsMaterialMenuOpen(!isMaterialMenuOpen)
+             setFurnitureName('')
+            setIsLoading(false)
+            
+        } else {
+
+            await setFilteredMaterials(materials.filter(material => Object.keys(material.layers).toString() === point.id), point.name)
+                
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 500);
+         
         }
-        setFilteredMaterials(materials.filter(material => Object.keys(material.layers).toString() === point.id), point.name)
 
     }
 
@@ -29,6 +43,11 @@ export const ImageContainer = ({points, materials}) => {
             <img className="min-w-screen h-3/4 -z-30 top-0 left-0 relative rounded-md" src="https://firebasestorage.googleapis.com/v0/b/visualizer-new-devs-test.appspot.com/o/base.jpeg?alt=media&token=358ccdea-3cf9-4751-ae48-4631e4700554" alt="base-image" />
             {    
             <>
+                {isLoading && 
+                <div className="top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-50 absolute text-black text-5xl">
+                    <ColorRing />
+                </div>
+                }
                 {materialLayer.frente && <img className="z-10 top-0 absolute rounded-md" src={materialLayer.frente} alt="base-image" />}
                 {materialLayer.entrepaños && <img className="z-10 top-0 absolute rounded-md" src={materialLayer.entrepaños} alt="base-image" />}
                 {materialLayer.pavimento && <img className="z-10 top-0 absolute rounded-md" src={materialLayer.pavimento} alt="base-image" />}

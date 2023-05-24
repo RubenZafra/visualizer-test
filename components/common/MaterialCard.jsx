@@ -4,10 +4,15 @@ import { LayersContext } from "../../context/LayersContext/LayersContext";
 export const MaterialCard = ({material}) => {
 
     const {name, materialPreview } = material;
-    const { setMaterialLayer } = useContext(LayersContext)
+    const { setMaterialLayer, layersState, setIsLoading } = useContext(LayersContext)
+    const {isLoading} = layersState
 
     const handleClick = (materialLayer) => {
+        setIsLoading(true)
         setMaterialLayer(materialLayer)
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 500);
     }
   return (
 

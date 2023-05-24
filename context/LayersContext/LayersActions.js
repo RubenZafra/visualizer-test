@@ -6,7 +6,7 @@ export const initialValue = {
     materials: [],
     filteredMaterials: [],
     isMaterialMenuOpen: false,
-    isLoading:  false,
+    isLoading: false,
     furnitureName: '', 
     materialLayer: { entrepaños: '', encimera: '', frente: '', pavimento: '' }
 }
@@ -31,12 +31,11 @@ export const reducer = (state, action) => {
                 filteredMaterials: action.payload.filteredMaterials,
                 isMaterialMenuOpen: true,
                 furnitureName: action.payload.furnitureName,
-                isLoading: false,
             }
         case TYPES.SET_IS_LOADING:
             return {
                 ...state,
-                isLoading: !isLoading,
+                isLoading: action.payload.isLoading,
             }
         case TYPES.SET_IS_MATERIAL_MENU_OPEN:
             return {

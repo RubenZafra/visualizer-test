@@ -37,11 +37,13 @@ const LayersProvider = ({children}) => {
             }})
         }, [])
 
-    const setIsLoading = useCallback(() => {
+    const setIsLoading = useCallback((boolean) => {
         
         dispatch({
             type: TYPES.SET_IS_LOADING,
-            payload
+            payload: {
+                isLoading: boolean
+            }
             })
         }, [])
 
